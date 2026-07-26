@@ -9,15 +9,12 @@ function factorial (a) {
 }
 
 function memorize (cb) {
+	memorize.cache ??= {};
 	return function (arg) {
-		memorize.cache ??= {};
-
 		if (arg in memorize.cache) {
 			return memorize.cache[arg];
 		}
-
 		memorize.cache[arg] = cb(arg);
-
 		return memorize.cache[arg];
 	}
 }
