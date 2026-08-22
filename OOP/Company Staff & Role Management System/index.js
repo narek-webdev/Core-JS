@@ -3,8 +3,17 @@ class Employee {
   #baseSalary;
 
   constructor(name, baseSalary) {
+    if (baseSalary <= 0) {
+      throw new Error("Salary can't be negative or 0");
+    }
     this.#name = name;
     this.#baseSalary = baseSalary;
+  }
+
+  set baseSalary(salary) {
+    if (salary <= 0) {
+      throw new Error("Salary should be positive");
+    }
   }
 
   getName() {
@@ -52,6 +61,10 @@ class Manager extends Employee {
   #successfulDeals = 0;
 
   constructor(name, baseSalary, teamSize = 0) {
+    if (teamSize < 0) {
+      throw new Error("Team size can't be negative");
+    }
+
     super(name, baseSalary);
     this.#teamSize = teamSize;
   }
@@ -74,7 +87,7 @@ jamesDeveloper.fixBug();
 
 console.log(jamesDeveloper.calculateDeveloperPay());
 
-const johnManager = new Manager("John", 500, 20);
+const johnManager = new Manager("John", 900, 90);
 
 console.log(johnManager.conductMeeting());
 
